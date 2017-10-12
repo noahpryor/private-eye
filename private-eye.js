@@ -37,18 +37,20 @@
 
       }
 
-      var anchors = document.querySelectorAll('a[href*="' + hrefValue + '"]');
+      var anchors = document.querySelectorAll('a')
       Array.prototype.forEach.call(anchors, function(anchor) {
-        anchor.className += ' private-link';
+        // Check to see if link href contains the internal link (case insenstive)
+        if(anchor.href.toLowerCase().indexOf(hrefValue.toLowerCase()) != -1) {
+          anchor.className += ' private-link';
 
-        // Only replace the anchor's title if it is empty
-        //
-        if ( ! anchor.title ) {
+          // Only replace the anchor's title if it is empty
+          //
+          if ( ! anchor.title ) {
 
-          anchor.title = titleValue;
+            anchor.title = titleValue;
 
+          }
         }
-
       });
     });
   };
